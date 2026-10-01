@@ -1,0 +1,341 @@
+{%extends "layout.html" %}
+
+
+{% block main %}
+<div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
+
+    <!-- ENCABEZADO -->
+    <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
+        Forma normal 5 de 6
+    </p>
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">Quinta Forma Normal (5FN)</h1>
+    <p class="text-center text-slate-200 mb-10">
+        Una tabla debe descomponerse si puede reconstruirse exactamente a partir de proyecciones más
+        pequeñas.
+    </p>
+
+    <!-- SECCIÓN 1: ¿Qué dice la 5FN? -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
+            ¿Qué dice la 5FN?
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tabla está en <strong class="text-white">Quinta Forma Normal</strong> (también
+            llamada PJ/NF, forma normal de proyección-unión) cuando está en 4FN y toda
+            <strong class="text-white">dependencia de unión</strong> está implicada por sus claves
+            candidatas.
+        </p>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            En palabras simples: si la tabla puede dividirse en varias tablas más pequeñas y volver
+            a obtener <em>exactamente</em> la original con un
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">JOIN</code> (sin filas de más ni de
+            menos), y esa división elimina redundancia, entonces debe dividirse.
+        </p>
+
+        <!-- Lista de verificación -->
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <p class="font-semibold mb-3">Una tabla cumple la 5FN si:</p>
+            <ul class="space-y-2 text-slate-200">
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>Ya cumple la <strong>4FN</strong>.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>
+                        No existe una descomposición sin pérdida en tablas más pequeñas que no venga
+                        ya dada por las claves.
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Recuadro: ¿Cuándo aparece? -->
+        <div class="mt-4 rounded-2xl bg-indigo-500/10 border border-indigo-300/30 p-5">
+            <p class="font-semibold mb-2">¿Cuándo aparece?</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                Con relaciones entre <strong>tres o más</strong> entidades donde existe una regla de
+                negocio de tipo cíclico: <code class="bg-black/30 px-1.5 py-0.5 rounded">A-B</code>,
+                <code class="bg-black/30 px-1.5 py-0.5 rounded">B-C</code> y
+                <code class="bg-black/30 px-1.5 py-0.5 rounded">A-C</code> implican
+                <code class="bg-black/30 px-1.5 py-0.5 rounded">A-B-C</code>.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Ejemplo que NO cumple la 5FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
+            Ejemplo que NO cumple la 5FN
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Regla del negocio: <em>si un proveedor ofrece un producto, un proyecto usa ese producto
+            y el proveedor trabaja para ese proyecto, entonces el proveedor entrega ese producto a
+            ese proyecto.</em>
+        </p>
+
+        <!-- Tabla: proveedor_producto_proyecto -->
+        <div>
+            <p class="font-semibold mb-2 text-rose-200">proveedor_producto_proyecto</p>
+            <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-rose-500/20 text-rose-100">
+                        <tr>
+                            <th class="px-4 py-3">proveedor (PK)</th>
+                            <th class="px-4 py-3">producto (PK)</th>
+                            <th class="px-4 py-3">proyecto (PK)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">Andes</td>
+                            <td class="px-4 py-3 ">Cemento</td>
+                            <td class="px-4 py-3 ">Puente</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">Andes</td>
+                            <td class="px-4 py-3 ">Cemento</td>
+                            <td class="px-4 py-3 ">Torre</td>
+                        </tr>
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">Andes</td>
+                            <td class="px-4 py-3 ">Acero</td>
+                            <td class="px-4 py-3 ">Torre</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">Sol</td>
+                            <td class="px-4 py-3 ">Cemento</td>
+                            <td class="px-4 py-3 ">Torre</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recuadro: problemas y anomalías -->
+        <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
+            <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema?</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
+                <li>
+                    <strong>Redundancia:</strong> cada pareja (proveedor-producto,
+                    producto-proyecto, proveedor-proyecto) aparece repetida en varias filas.
+                </li>
+                <li>
+                    <strong>Actualización:</strong> si el proveedor Sol deja de ofrecer Cemento,
+                    debes eliminar todas las filas que lo mencionan.
+                </li>
+                <li>
+                    <strong>Inconsistencia:</strong> si olvidas una fila, rompes la regla del
+                    negocio sin darte cuenta.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: Cómo llevarla a 5FN, paso a paso -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
+            Cómo llevarla a 5FN, paso a paso
+        </h2>
+
+        <!-- Pasos numerados -->
+        <ol class="space-y-4">
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 1 · Identifica la regla del negocio</p>
+                <p class="text-slate-200 text-sm">
+                    Confirma que la relación de tres entidades siempre se deduce de las relaciones
+                    de a dos.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 2 · Proyecta la tabla en pares</p>
+                <p class="text-slate-200 text-sm">
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">proveedor-producto</code>,
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">producto-proyecto</code> y
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">proveedor-proyecto</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 3 · Comprueba la reconstrucción</p>
+                <p class="text-slate-200 text-sm">
+                    Haz el JOIN de las tres tablas. Debes obtener exactamente las filas originales,
+                    ni una más.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 4 · Si coincide, deja las tres tablas</p>
+                <p class="text-slate-200 text-sm">
+                    Si el JOIN produce filas que no existían (llamadas <em>tuplas espurias</em>), la
+                    regla no se cumple y <strong>no</strong> debes descomponer.
+                </p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SECCIÓN 4: Resultado: tablas en 5FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
+                4
+            </span>
+            Resultado: tablas en 5FN
+        </h2>
+        <div class="grid gap-4 grid-cols-1">
+
+            <!-- Tabla: proveedor_producto -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">proveedor_producto</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">proveedor (PK)</th>
+                                <th class="px-4 py-3">producto (PK)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Andes</td>
+                                <td class="px-4 py-3 ">Cemento</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Andes</td>
+                                <td class="px-4 py-3 ">Acero</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Sol</td>
+                                <td class="px-4 py-3 ">Cemento</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla: producto_proyecto -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">producto_proyecto</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">producto (PK)</th>
+                                <th class="px-4 py-3">proyecto (PK)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Cemento</td>
+                                <td class="px-4 py-3 ">Puente</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Cemento</td>
+                                <td class="px-4 py-3 ">Torre</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Acero</td>
+                                <td class="px-4 py-3 ">Torre</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla: proveedor_proyecto -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">proveedor_proyecto</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">proveedor (PK)</th>
+                                <th class="px-4 py-3">proyecto (PK)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Andes</td>
+                                <td class="px-4 py-3 ">Puente</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Andes</td>
+                                <td class="px-4 py-3 ">Torre</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Sol</td>
+                                <td class="px-4 py-3 ">Torre</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recuadro: Comprobación -->
+        <div class="mt-4 rounded-2xl bg-emerald-500/10 border border-emerald-300/30 p-5">
+            <p class="font-semibold mb-2">Comprobación</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                Al unir las tres tablas con JOIN se obtienen exactamente las 4 filas originales, sin
+                tuplas espurias. Con tan pocos datos no se ahorran filas, pero el beneficio crece a
+                medida que aumenta el volumen.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 5: Errores comunes -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
+            Errores comunes
+        </h2>
+
+        <!-- Tarjetas informativas -->
+        <div class="space-y-3 text-sm text-slate-200">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Descomponer sin que exista la regla de negocio</p>
+                <p>
+                    Si la regla cíclica no es cierta, el JOIN genera filas falsas y pierdes
+                    información real. Esta es la razón por la que la 5FN depende del significado de
+                    los datos.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Aplicarla a todas las tablas</p>
+                <p>
+                    Es una forma normal rara en la práctica. La mayoría de los sistemas se detienen
+                    en 3FN o FNBC, y a veces en 4FN.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Confundirla con la 4FN</p>
+                <p>
+                    La 4FN separa hechos independientes de un mismo determinante; la 5FN trata
+                    relaciones entre tres o más entidades que se deducen de las de a dos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
+        <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
+        <p class="text-slate-100 text-sm leading-relaxed">
+            5FN = <strong>4FN</strong> + <strong>toda dependencia de unión está implicada por las
+            claves</strong>. Si una tabla se reconstruye exactamente con un JOIN de proyecciones, se
+            divide.
+        </p>
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="flex items-center justify-between gap-4">
+        <a href="/4fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
+            ← Cuarta Forma Normal
+        </a>
+        <a href="/" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 transition font-semibold text-sm">
+            Volver al indice->
+        </a>
+    </nav>
+</div>
+{% endblock %}

@@ -1,0 +1,327 @@
+{%extends "layout.html" %}
+
+{% block main %}
+<div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
+
+    <!-- ENCABEZADO -->
+    <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
+        Forma normal 2 de 6
+    </p>
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">Segunda Forma Normal (2FN)</h1>
+    <p class="text-center text-slate-200 mb-10">
+        Cada atributo debe depender de <strong>toda</strong> la clave primaria, no solo de una parte
+        de ella.
+    </p>
+
+    <!-- SECCIÓN 1: ¿Qué dice la 2FN? -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
+            ¿Qué dice la 2FN?
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tabla está en <strong class="text-white">Segunda Forma Normal</strong> cuando ya
+            está en 1FN y ningún atributo que no forma parte de la clave depende solo de <em>una
+            parte</em> de una clave compuesta. A eso se le llama
+            <strong class="text-white">dependencia parcial</strong>.
+        </p>
+
+        <!-- Lista de verificación -->
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <p class="font-semibold mb-3">Una tabla cumple la 2FN si:</p>
+            <ul class="space-y-2 text-slate-200">
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>Ya cumple la <strong>1FN</strong>.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>Cada atributo no clave depende de <strong>toda</strong> la clave compuesta.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>
+                        Si la clave primaria es de <strong>una sola columna</strong>, la tabla
+                        cumple la 2FN automáticamente.
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Recuadro: Regla para recordar -->
+        <div class="mt-4 rounded-2xl bg-indigo-500/10 border border-indigo-300/30 p-5">
+            <p class="font-semibold mb-2">Regla para recordar</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                1FN → <em>la clave</em> · 2FN → <em>toda la clave</em> · 3FN → <em>y nada más que la
+                clave</em>.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Ejemplo que NO cumple la 2FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
+            Ejemplo que NO cumple la 2FN
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tienda registra los productos de cada pedido. La clave primaria es compuesta:
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">(id_pedido, id_producto)</code>. La
+            cantidad depende de ambos datos, pero
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">nombre_producto</code> y
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">precio</code> dependen solo de
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">id_producto</code>.
+        </p>
+
+        <!-- Tabla: detalle_pedido -->
+        <div>
+            <p class="font-semibold mb-2 text-rose-200">detalle_pedido</p>
+            <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-rose-500/20 text-rose-100">
+                        <tr>
+                            <th class="px-4 py-3">id_pedido (PK)</th>
+                            <th class="px-4 py-3">id_producto (PK)</th>
+                            <th class="px-4 py-3">nombre_producto</th>
+                            <th class="px-4 py-3">precio</th>
+                            <th class="px-4 py-3">cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">101</td>
+                            <td class="px-4 py-3 ">P1</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Chocolate</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">10</td>
+                            <td class="px-4 py-3 ">2</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">101</td>
+                            <td class="px-4 py-3 ">P2</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Café</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">15</td>
+                            <td class="px-4 py-3 ">1</td>
+                        </tr>
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">102</td>
+                            <td class="px-4 py-3 ">P1</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Chocolate</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">10</td>
+                            <td class="px-4 py-3 ">5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recuadro: problemas y anomalías -->
+        <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
+            <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema? (anomalías)</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
+                <li>
+                    <strong>Redundancia:</strong> "Chocolate, 10" se repite en cada pedido que lo
+                    incluye.
+                </li>
+                <li>
+                    <strong>Actualización:</strong> si cambia el precio del chocolate, debes
+                    modificar muchas filas y puedes olvidar alguna.
+                </li>
+                <li>
+                    <strong>Inserción:</strong> no puedes registrar un producto nuevo hasta que
+                    alguien lo pida.
+                </li>
+                <li>
+                    <strong>Eliminación:</strong> si borras el pedido 101, pierdes también la
+                    información del Café.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: Cómo llevarla a 2FN, paso a paso -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
+            Cómo llevarla a 2FN, paso a paso
+        </h2>
+
+        <!-- Pasos numerados -->
+        <ol class="space-y-4">
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 1 · Identifica la clave primaria</p>
+                <p class="text-slate-200 text-sm">
+                    Si es de una sola columna, ya terminaste. Aquí es compuesta:
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">(id_pedido, id_producto)</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 2 · Escribe las dependencias funcionales</p>
+                <p class="text-slate-200 text-sm">
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">(id_pedido, id_producto) →
+                    cantidad</code> y <code class="bg-black/30 px-1.5 py-0.5 rounded">id_producto →
+                    nombre_producto, precio</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 3 · Detecta las dependencias parciales</p>
+                <p class="text-slate-200 text-sm">
+                    Son las que tienen como determinante solo una parte de la clave. Aquí:
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">id_producto → nombre_producto,
+                    precio</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 4 · Crea una tabla nueva</p>
+                <p class="text-slate-200 text-sm">
+                    Esa parte de la clave
+                    (<code class="bg-black/30 px-1.5 py-0.5 rounded">id_producto</code>) será la PK
+                    de la nueva tabla, junto con los atributos que dependen de ella.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 5 · Deja la clave como FK en la tabla original</p>
+                <p class="text-slate-200 text-sm">
+                    La tabla original conserva la clave completa y los atributos que dependen de
+                    toda ella.
+                </p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SECCIÓN 4: Resultado: tablas en 2FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
+                4
+            </span>
+            Resultado: tablas en 2FN
+        </h2>
+        <div class="grid gap-4 grid-cols-1">
+
+            <!-- Tabla: producto -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">producto</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">id_producto (PK)</th>
+                                <th class="px-4 py-3">nombre_producto</th>
+                                <th class="px-4 py-3">precio</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">P1</td>
+                                <td class="px-4 py-3 ">Chocolate</td>
+                                <td class="px-4 py-3 ">10</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">P2</td>
+                                <td class="px-4 py-3 ">Café</td>
+                                <td class="px-4 py-3 ">15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla: detalle_pedido -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">detalle_pedido</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">id_pedido (PK, FK)</th>
+                                <th class="px-4 py-3">id_producto (PK, FK)</th>
+                                <th class="px-4 py-3">cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">101</td>
+                                <td class="px-4 py-3 ">P1</td>
+                                <td class="px-4 py-3 ">2</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">101</td>
+                                <td class="px-4 py-3 ">P2</td>
+                                <td class="px-4 py-3 ">1</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">102</td>
+                                <td class="px-4 py-3 ">P1</td>
+                                <td class="px-4 py-3 ">5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            <span class="block mt-4 text-sm">
+                Ahora el precio del chocolate vive en un solo lugar y puedes registrar productos sin
+                pedidos.
+            </span>
+        </p>
+    </section>
+
+    <!-- SECCIÓN 5: Errores comunes -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
+            Errores comunes
+        </h2>
+
+        <!-- Tarjetas informativas -->
+        <div class="space-y-3 text-sm text-slate-200">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Aplicar la 2FN a tablas con clave simple</p>
+                <p>
+                    Solo tiene sentido con claves compuestas. Con PK de una columna no puede haber
+                    dependencias parciales.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Dejar el atributo en las dos tablas</p>
+                <p>
+                    Si <code class="bg-black/30 px-1.5 py-0.5 rounded">precio</code> queda en
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">producto</code> y también en
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">detalle_pedido</code>, vuelves a
+                    tener redundancia.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Confundir precio actual con precio de venta</p>
+                <p>
+                    Si necesitas el precio <em>al momento de la venta</em> (que no cambia aunque el
+                    producto cambie de precio), guárdalo en
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">detalle_pedido</code> como
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">precio_venta</code>: ahora sí
+                    depende de toda la clave.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
+        <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
+        <p class="text-slate-100 text-sm leading-relaxed">
+            2FN = <strong>1FN</strong> + <strong>sin dependencias parciales</strong>. Si un dato
+            depende solo de una parte de la clave compuesta, va a su propia tabla.
+        </p>
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="flex items-center justify-between gap-4">
+        <a href="/1fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
+            ← Primera Forma Normal
+        </a>
+        <a href="/3fn" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 transition font-semibold text-sm">
+            Tercera Forma Normal →
+        </a>
+    </nav>
+</div>
+{% endblock %}

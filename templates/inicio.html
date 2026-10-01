@@ -1,72 +1,92 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%extends "layout.html" %}
 
-    <title>Menú</title>
-
-    <!-- Tailwind CSS por CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 flex items-center justify-center text-white">
-
-    <main class="w-full max-w-xl mx-4">
-
-        <div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10">
+{%block main%}
+    <div class="bg-white/10 backdrop-blur-md rounded-6xl shadow-2xl p-8 md:p-10 border border-white/10">
 
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-10">
-                El Bryan no hace sus commits
+                Aprendiendo acerca de la normalizacion
             </h1>
 
             <div class="space-y-6">
 
                 <div class="bg-white/10 rounded-2xl p-6 text-center hover:bg-white/15 hover:-translate-y-1 transition duration-300">
                     <p class="text-gray-300 mb-4">
-                        Haga click acá para entrar al:
+                        Haga click acá para aprender acerca de la:
                     </p>
 
                     <a
-                        href="/"
+                        href="/1fn"
                         class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-xl font-semibold shadow-lg transition duration-300 hover:scale-105"
                     >
-                        Inicio
+                        1ra forma normal
+                    </a>
+                </div>
+                    </p>
+                <div class="bg-white/10 rounded-2xl p-6 text-center hover:bg-white/15 hover:-translate-y-1 transition duration-300">
+                    <p class="text-gray-300 mb-4">
+                        Haga click acá para aprender acerca de la:
+                    </p>
+
+                    <a
+                        href="/2fn"
+                        class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-xl font-semibold shadow-lg transition duration-300 hover:scale-105"
+                    >
+                        2da forma normla
+                    </a>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-6 text-center hover:bg-white/15 hover:-translate-y-1 transition duration-300">
+                    <p class="text-gray-300 mb-4">
+                        Haga click acá para aprender acerca de la:
+                    </p>
+
+                    <a
+                        href="/3fn"
+                        class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-xl font-semibold shadow-lg transition duration-300 hover:scale-105"
+                    >
+                        3ra forma normal
+                    </a>
+                </div>
+
+                <div class="bg-white/10 rounded-2xl p-6 text-center hover:bg-white/15 hover:-translate-y-1 transition duration-300">
+                    <p>
+                        Haga click acá para aprender acerca de la:
+                    </p>
+
+                    <a
+                        href="/6fn"
+                        class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-xl font-semibold shadow-lg transition duration-300 hover:scale-105"
+                    >
+                        Forma normal boyce codd
                     </a>
                 </div>
 
                 <div class="bg-white/10 rounded-2xl p-6 text-center hover:bg-white/15 hover:-translate-y-1 transition duration-300">
                     <p class="text-gray-300 mb-4">
-                        Haga click acá para entrar al:
+                        Haga click acá para aprender acerca de la:
                     </p>
 
                     <a
-                        href="/Inter"
+                        href="/5fn"
                         class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-xl font-semibold shadow-lg transition duration-300 hover:scale-105"
                     >
-                        Intermedio
+                        4ta forma normal
                     </a>
                 </div>
-
                 <div class="bg-white/10 rounded-2xl p-6 text-center hover:bg-white/15 hover:-translate-y-1 transition duration-300">
                     <p class="text-gray-300 mb-4">
-                        Haga click acá para entrar al:
+                        Haga click acá para aprender acerca de la:
                     </p>
 
                     <a
-                        href="/Final"
+                        href="/6fn"
                         class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-xl font-semibold shadow-lg transition duration-300 hover:scale-105"
                     >
-                        Final
+                        5ta forma normal
                     </a>
                 </div>
 
             </div>
 
-        </div>
-
-    </main>
-
-</body>
-</html>
+    </div>
+{%endblock%}
 

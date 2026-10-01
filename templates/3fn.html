@@ -1,0 +1,331 @@
+{%extends "layout.html" %}
+
+
+{% block main %}
+<div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
+
+    <!-- ENCABEZADO -->
+    <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
+        Forma normal 3 de 6
+    </p>
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">Tercera Forma Normal (3FN)</h1>
+    <p class="text-center text-slate-200 mb-10">
+        Los atributos deben depender de la clave y de <strong>nada más que la clave</strong>.
+    </p>
+
+    <!-- SECCIÓN 1: ¿Qué dice la 3FN? -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
+            ¿Qué dice la 3FN?
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tabla está en <strong class="text-white">Tercera Forma Normal</strong> cuando ya
+            está en 2FN y no tiene <strong class="text-white">dependencias transitivas</strong>:
+            ningún atributo no clave depende de otro atributo no clave.
+        </p>
+
+        <!-- Lista de verificación -->
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <p class="font-semibold mb-3">Una tabla cumple la 3FN si:</p>
+            <ul class="space-y-2 text-slate-200">
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>Ya cumple la <strong>2FN</strong>.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>Ningún atributo no clave determina a otro atributo no clave.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>
+                        Todo atributo no clave depende <strong>directamente</strong> de la clave
+                        primaria.
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Recuadro: ¿Qué es una dependencia transitiva? -->
+        <div class="mt-4 rounded-2xl bg-indigo-500/10 border border-indigo-300/30 p-5">
+            <p class="font-semibold mb-2">¿Qué es una dependencia transitiva?</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                Ocurre cuando <code class="bg-black/30 px-1.5 py-0.5 rounded">A → B</code> y
+                <code class="bg-black/30 px-1.5 py-0.5 rounded">B → C</code>, donde A es la clave y
+                B y C no lo son. Entonces <code class="bg-black/30 px-1.5 py-0.5 rounded">A →
+                C</code> es indirecta: pasa por B.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Ejemplo que NO cumple la 3FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
+            Ejemplo que NO cumple la 3FN
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            La clave es <code class="bg-black/30 px-1.5 py-0.5 rounded">id_empleado</code> (una sola
+            columna, así que la 2FN se cumple). Pero
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">nombre_depto</code> y
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">ciudad_depto</code> dependen de
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">id_depto</code>, que no es la clave.
+        </p>
+
+        <!-- Tabla: empleado -->
+        <div>
+            <p class="font-semibold mb-2 text-rose-200">empleado</p>
+            <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-rose-500/20 text-rose-100">
+                        <tr>
+                            <th class="px-4 py-3">id_empleado (PK)</th>
+                            <th class="px-4 py-3">nombre</th>
+                            <th class="px-4 py-3">id_depto</th>
+                            <th class="px-4 py-3">nombre_depto</th>
+                            <th class="px-4 py-3">ciudad_depto</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">1</td>
+                            <td class="px-4 py-3 ">Ana Rojas</td>
+                            <td class="px-4 py-3 ">D1</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Ventas</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">La Paz</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">2</td>
+                            <td class="px-4 py-3 ">Luis Mamani</td>
+                            <td class="px-4 py-3 ">D1</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Ventas</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">La Paz</td>
+                        </tr>
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">3</td>
+                            <td class="px-4 py-3 ">Eva Quispe</td>
+                            <td class="px-4 py-3 ">D2</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Sistemas</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Cochabamba</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            <span class="block mt-3 text-sm">
+                Cadena de dependencias: <code class="bg-black/30 px-1.5 py-0.5 rounded">id_empleado
+                → id_depto → nombre_depto, ciudad_depto</code>
+            </span>
+        </p>
+
+        <!-- Recuadro: problemas y anomalías -->
+        <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
+            <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema?</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
+                <li>
+                    <strong>Redundancia:</strong> "Ventas, La Paz" se repite por cada empleado del
+                    departamento.
+                </li>
+                <li>
+                    <strong>Actualización:</strong> si Ventas se muda a Santa Cruz, hay que editar
+                    todas las filas; si olvidas una, los datos se contradicen.
+                </li>
+                <li>
+                    <strong>Inserción:</strong> no puedes crear un departamento sin asignarle un
+                    empleado.
+                </li>
+                <li>
+                    <strong>Eliminación:</strong> al despedir a Eva, se pierde que existe el
+                    departamento Sistemas.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: Cómo llevarla a 3FN, paso a paso -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
+            Cómo llevarla a 3FN, paso a paso
+        </h2>
+
+        <!-- Pasos numerados -->
+        <ol class="space-y-4">
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 1 · Lista las dependencias funcionales</p>
+                <p class="text-slate-200 text-sm">
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">id_empleado → nombre,
+                    id_depto</code> y <code class="bg-black/30 px-1.5 py-0.5 rounded">id_depto →
+                    nombre_depto, ciudad_depto</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 2 · Busca cadenas A → B → C</p>
+                <p class="text-slate-200 text-sm">
+                    donde B no sea una clave. Aquí B es
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">id_depto</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 3 · Mueve los atributos dependientes a una tabla nueva</p>
+                <p class="text-slate-200 text-sm">
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">nombre_depto</code> y
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">ciudad_depto</code> pasan a
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">departamento</code>, con
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">id_depto</code> como PK.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 4 · Deja el determinante como FK</p>
+                <p class="text-slate-200 text-sm">
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">id_depto</code> permanece en
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">empleado</code> como clave
+                    foránea hacia
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">departamento</code>.
+                </p>
+            </li>
+        </ol>
+
+        <!-- Recuadro: Truco práctico -->
+        <div class="mt-4 rounded-2xl bg-amber-500/10 border border-amber-300/30 p-5">
+            <p class="font-semibold mb-2">Truco práctico</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                Para cada columna pregúntate: <em>¿este dato describe al empleado o al
+                departamento?</em> Si describe a otra entidad, pertenece a otra tabla.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: Resultado: tablas en 3FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
+                4
+            </span>
+            Resultado: tablas en 3FN
+        </h2>
+        <div class="grid gap-4 grid-cols-1">
+
+            <!-- Tabla: departamento -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">departamento</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">id_depto (PK)</th>
+                                <th class="px-4 py-3">nombre_depto</th>
+                                <th class="px-4 py-3">ciudad_depto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">D1</td>
+                                <td class="px-4 py-3 ">Ventas</td>
+                                <td class="px-4 py-3 ">La Paz</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">D2</td>
+                                <td class="px-4 py-3 ">Sistemas</td>
+                                <td class="px-4 py-3 ">Cochabamba</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla: empleado -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">empleado</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">id_empleado (PK)</th>
+                                <th class="px-4 py-3">nombre</th>
+                                <th class="px-4 py-3">id_depto (FK)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">1</td>
+                                <td class="px-4 py-3 ">Ana Rojas</td>
+                                <td class="px-4 py-3 ">D1</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">2</td>
+                                <td class="px-4 py-3 ">Luis Mamani</td>
+                                <td class="px-4 py-3 ">D1</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">3</td>
+                                <td class="px-4 py-3 ">Eva Quispe</td>
+                                <td class="px-4 py-3 ">D2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 5: Errores comunes -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
+            Errores comunes
+        </h2>
+
+        <!-- Tarjetas informativas -->
+        <div class="space-y-3 text-sm text-slate-200">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">
+                    Pensar que la 3FN solo aplica con claves compuestas
+                </p>
+                <p>
+                    Se aplica siempre. Una tabla con PK simple puede perfectamente tener
+                    dependencias transitivas, como en este ejemplo.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">No ver la dependencia oculta</p>
+                <p>
+                    Datos como <code class="bg-black/30 px-1.5 py-0.5 rounded">ciudad</code> +
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">código_postal</code> o
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">categoría</code> +
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">descuento_categoría</code>
+                    suelen ser dependencias transitivas disfrazadas.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Separar sin criterio</p>
+                <p>
+                    Normalizar es decidir según las reglas del negocio. Si dos datos nunca se
+                    determinan entre sí, no hay nada que separar.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
+        <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
+        <p class="text-slate-100 text-sm leading-relaxed">
+            3FN = <strong>2FN</strong> + <strong>sin dependencias transitivas</strong>. Cada
+            atributo describe únicamente a la entidad que identifica la clave.
+        </p>
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="flex items-center justify-between gap-4">
+        <a href="/2fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
+            ← Segunda Forma Normal
+        </a>
+        <a href="/6fn" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 transition font-semibold text-sm">
+            Forma normal boyce codd  →
+        </a>
+    </nav>
+</div>
+{% endblock %}

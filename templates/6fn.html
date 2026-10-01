@@ -1,0 +1,319 @@
+{%extends "layout.html" %}
+
+{% block main %}
+<div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
+
+    <!-- ENCABEZADO -->
+    <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
+        Forma normal 6 de 6
+    </p>
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">Forma Normal de Boyce-Codd (FNBC)</h1>
+    <p class="text-center text-slate-200 mb-10">
+        Una versión más estricta de la 3FN: todo determinante debe ser una
+        <strong>superclave</strong>.
+    </p>
+
+    <!-- SECCIÓN 1: ¿Qué dice la FNBC? -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
+            ¿Qué dice la FNBC?
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tabla está en <strong class="text-white">Forma Normal de Boyce-Codd</strong> (BCNF
+            en inglés) cuando, para toda dependencia funcional no trivial
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">X → Y</code>, el determinante
+            <strong class="text-white">X es una superclave</strong>.
+        </p>
+
+        <!-- Lista de verificación -->
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <p class="font-semibold mb-3">Una tabla cumple la FNBC si:</p>
+            <ul class="space-y-2 text-slate-200">
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>Ya cumple la <strong>3FN</strong>.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>
+                        Todo lado izquierdo de una dependencia funcional (todo determinante) es una
+                        <strong>superclave</strong>.
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Recuadro: ¿Y la diferencia con la 3FN? -->
+        <div class="mt-4 rounded-2xl bg-indigo-500/10 border border-indigo-300/30 p-5">
+            <p class="font-semibold mb-2">¿Y la diferencia con la 3FN?</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                La 3FN permite que <code class="bg-black/30 px-1.5 py-0.5 rounded">X → Y</code>
+                exista si Y forma parte de alguna clave candidata. La FNBC no permite esa excepción.
+                Por eso toda tabla en FNBC está en 3FN, pero no al revés.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Ejemplo que está en 3FN pero NO en FNBC -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
+            Ejemplo que está en 3FN pero NO en FNBC
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Reglas del negocio: cada docente enseña <strong>una sola materia</strong>, una materia
+            puede tener varios docentes, y un estudiante cursa cada materia con un solo docente.
+        </p>
+
+        <!-- Tabla: inscripcion -->
+        <div>
+            <p class="font-semibold mb-2 text-rose-200">inscripcion</p>
+            <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-rose-500/20 text-rose-100">
+                        <tr>
+                            <th class="px-4 py-3">estudiante</th>
+                            <th class="px-4 py-3">materia</th>
+                            <th class="px-4 py-3">docente</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">Ana</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Bases de Datos</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Pérez</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">Luis</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Bases de Datos</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Pérez</td>
+                        </tr>
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">Eva</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Bases de Datos</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Ruiz</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">Ana</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Redes</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Gómez</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            <span class="block mt-3 text-sm">
+                Claves candidatas: <code class="bg-black/30 px-1.5 py-0.5 rounded">(estudiante,
+                materia)</code> y <code class="bg-black/30 px-1.5 py-0.5 rounded">(estudiante,
+                docente)</code>. Dependencia:
+                <code class="bg-black/30 px-1.5 py-0.5 rounded">docente → materia</code>. Está en
+                3FN porque <code class="bg-black/30 px-1.5 py-0.5 rounded">materia</code> forma
+                parte de una clave candidata, pero <strong>docente no es superclave</strong>, así
+                que no cumple la FNBC.
+            </span>
+        </p>
+
+        <!-- Recuadro: problemas y anomalías -->
+        <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
+            <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema?</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
+                <li>
+                    <strong>Redundancia:</strong> "Pérez enseña Bases de Datos" se repite por cada
+                    estudiante inscrito.
+                </li>
+                <li>
+                    <strong>Actualización:</strong> si Pérez pasa a enseñar otra materia, hay que
+                    corregir muchas filas.
+                </li>
+                <li>
+                    <strong>Inserción:</strong> no puedes registrar que un docente enseña una
+                    materia hasta que tenga un estudiante inscrito.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: Cómo llevarla a FNBC, paso a paso -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
+            Cómo llevarla a FNBC, paso a paso
+        </h2>
+
+        <!-- Pasos numerados -->
+        <ol class="space-y-4">
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 1 · Encuentra todas las claves candidatas</p>
+                <p class="text-slate-200 text-sm">
+                    Aquí hay dos: <code class="bg-black/30 px-1.5 py-0.5 rounded">(estudiante,
+                    materia)</code> y <code class="bg-black/30 px-1.5 py-0.5 rounded">(estudiante,
+                    docente)</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 2 · Lista todas las dependencias funcionales</p>
+                <p class="text-slate-200 text-sm">
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">(estudiante, materia) →
+                    docente</code> y <code class="bg-black/30 px-1.5 py-0.5 rounded">docente →
+                    materia</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 3 · Revisa cada determinante</p>
+                <p class="text-slate-200 text-sm">
+                    ¿Es una superclave?
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">docente</code> no lo es: ahí
+                    está la violación.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 4 · Descompón</p>
+                <p class="text-slate-200 text-sm">
+                    Crea una tabla con <code class="bg-black/30 px-1.5 py-0.5 rounded">(docente,
+                    materia)</code> usando
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">docente</code> como PK, y deja
+                    en la original <code class="bg-black/30 px-1.5 py-0.5 rounded">(estudiante,
+                    docente)</code>.
+                </p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SECCIÓN 4: Resultado: tablas en FNBC -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
+                4
+            </span>
+            Resultado: tablas en FNBC
+        </h2>
+        <div class="grid gap-4 grid-cols-1">
+
+            <!-- Tabla: docente_materia -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">docente_materia</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">docente (PK)</th>
+                                <th class="px-4 py-3">materia</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Pérez</td>
+                                <td class="px-4 py-3 ">Bases de Datos</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Ruiz</td>
+                                <td class="px-4 py-3 ">Bases de Datos</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Gómez</td>
+                                <td class="px-4 py-3 ">Redes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla: inscripcion -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">inscripcion</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">estudiante (PK, FK)</th>
+                                <th class="px-4 py-3">docente (PK, FK)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Ana</td>
+                                <td class="px-4 py-3 ">Pérez</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Luis</td>
+                                <td class="px-4 py-3 ">Pérez</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Eva</td>
+                                <td class="px-4 py-3 ">Ruiz</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Ana</td>
+                                <td class="px-4 py-3 ">Gómez</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recuadro: Ojo: la FNBC tiene un costo -->
+        <div class="mt-4 rounded-2xl bg-amber-500/10 border border-amber-300/30 p-5">
+            <p class="font-semibold mb-2">Ojo: la FNBC tiene un costo</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                Al descomponer se pierde la regla "un estudiante cursa cada materia con un solo
+                docente" (<code class="bg-black/30 px-1.5 py-0.5 rounded">(estudiante, materia) →
+                docente</code>): la estructura ya no la garantiza y habría que controlarla con otra
+                restricción. La 3FN siempre puede conservar todas las dependencias; la FNBC no
+                siempre. Por eso en la práctica a veces se acepta quedarse en 3FN.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 5: Errores comunes -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
+            Errores comunes
+        </h2>
+
+        <!-- Tarjetas informativas -->
+        <div class="space-y-3 text-sm text-slate-200">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Creer que 3FN y FNBC son lo mismo</p>
+                <p>
+                    Casi siempre coinciden, pero difieren cuando hay varias claves candidatas que se
+                    solapan, como en este ejemplo.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Olvidar buscar todas las claves candidatas</p>
+                <p>
+                    Si solo identificas una clave, pasarás por alto determinantes que sí son
+                    superclaves o que no lo son.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Ignorar las dependencias perdidas</p>
+                <p>Después de descomponer, verifica qué reglas del negocio dejaron de estar garantizadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
+        <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
+        <p class="text-slate-100 text-sm leading-relaxed">
+            FNBC = <strong>3FN</strong> + <strong>todo determinante es superclave</strong>. Es la
+            3FN sin la excepción de los atributos que forman parte de una clave.
+        </p>
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="flex items-center justify-between gap-4">
+        <a href="/3fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
+            ← Tercera forma normal
+        </a>
+        <a href="/4fn" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 transition font-semibold text-sm">
+            Cuarta forma normal→
+        </a>
+    </nav>
+</div>
+{% endblock %}

@@ -1,0 +1,314 @@
+{%extends "layout.html" %}
+
+{% block main %}
+<div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
+
+    <!-- ENCABEZADO -->
+    <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
+        Forma normal 4 de 6
+    </p>
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">Cuarta Forma Normal (4FN)</h1>
+    <p class="text-center text-slate-200 mb-10">
+        No mezcles dos hechos <strong>independientes</strong> y multivaluados en una misma tabla.
+    </p>
+
+    <!-- SECCIÓN 1: ¿Qué dice la 4FN? -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
+            ¿Qué dice la 4FN?
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tabla está en <strong class="text-white">Cuarta Forma Normal</strong> cuando está en
+            FNBC y no tiene <strong class="text-white">dependencias multivaluadas</strong> no
+            triviales, salvo que el determinante sea una superclave.
+        </p>
+
+        <!-- Recuadro: ¿Qué es una dependencia multivaluada? -->
+        <div class="mt-4 rounded-2xl bg-indigo-500/10 border border-indigo-300/30 p-5">
+            <p class="font-semibold mb-2">¿Qué es una dependencia multivaluada?</p>
+            <div class="text-slate-100 text-sm leading-relaxed">
+                Escribimos <code class="bg-black/30 px-1.5 py-0.5 rounded">A →→ B</code> cuando a
+                cada valor de A le corresponde un <em>conjunto</em> de valores de B, y ese conjunto
+                es independiente de las demás columnas. Un empleado tiene varias habilidades y
+                varios idiomas; las habilidades no dependen de los idiomas.
+            </div>
+        </div>
+        <div class="mt-4"></div>
+
+        <!-- Lista de verificación -->
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <p class="font-semibold mb-3">Una tabla cumple la 4FN si:</p>
+            <ul class="space-y-2 text-slate-200">
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>Ya cumple la <strong>FNBC</strong>.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-emerald-400">✔</span>
+                    <span>
+                        No guarda dos o más hechos multivaluados <strong>independientes</strong>
+                        sobre la misma entidad.
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Ejemplo que NO cumple la 4FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
+            Ejemplo que NO cumple la 4FN
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Se registran las habilidades y los idiomas de cada empleado en la misma tabla. Toda la
+            tabla es la clave, así que no hay dependencias funcionales y ya está en FNBC. Pero
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">empleado →→ habilidad</code> y
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">empleado →→ idioma</code> son
+            independientes.
+        </p>
+
+        <!-- Tabla: empleado_habilidad_idioma -->
+        <div>
+            <p class="font-semibold mb-2 text-rose-200">empleado_habilidad_idioma</p>
+            <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-rose-500/20 text-rose-100">
+                        <tr>
+                            <th class="px-4 py-3">empleado (PK)</th>
+                            <th class="px-4 py-3">habilidad (PK)</th>
+                            <th class="px-4 py-3">idioma (PK)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">Ana</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">SQL</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Español</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">Ana</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">SQL</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Inglés</td>
+                        </tr>
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">Ana</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Python</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Español</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">Ana</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Python</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Inglés</td>
+                        </tr>
+                        <tr class="bg-white/5">
+                            <td class="px-4 py-3 ">Luis</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Java</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Español</td>
+                        </tr>
+                        <tr class="">
+                            <td class="px-4 py-3 ">Luis</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Java</td>
+                            <td class="px-4 py-3 text-rose-300 font-medium">Quechua</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recuadro: problemas y anomalías -->
+        <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
+            <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema?</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
+                <li>
+                    <strong>Combinaciones forzadas:</strong> 2 habilidades × 2 idiomas obligan a
+                    guardar 4 filas para Ana.
+                </li>
+                <li>
+                    <strong>Inserción:</strong> si Ana aprende Docker, debes agregar una fila por
+                    cada idioma que habla.
+                </li>
+                <li>
+                    <strong>Inconsistencia:</strong> si olvidas una de esas filas, parecerá que Ana
+                    usa Docker solo en español.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: Cómo llevarla a 4FN, paso a paso -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
+            Cómo llevarla a 4FN, paso a paso
+        </h2>
+
+        <!-- Pasos numerados -->
+        <ol class="space-y-4">
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 1 · Identifica los atributos multivaluados</p>
+                <p class="text-slate-200 text-sm">
+                    Aquí: <code class="bg-black/30 px-1.5 py-0.5 rounded">habilidad</code> e
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">idioma</code> para cada
+                    empleado.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 2 · Verifica que sean independientes</p>
+                <p class="text-slate-200 text-sm">
+                    Pregúntate: ¿el idioma cambia según la habilidad? Si no, son independientes y
+                    deben separarse. Si sí (por ejemplo "da cursos de SQL en inglés"), la relación
+                    es un solo hecho y se queda unida.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 3 · Crea una tabla por cada hecho</p>
+                <p class="text-slate-200 text-sm">
+                    Una para <code class="bg-black/30 px-1.5 py-0.5 rounded">empleado -
+                    habilidad</code> y otra para
+                    <code class="bg-black/30 px-1.5 py-0.5 rounded">empleado - idioma</code>.
+                </p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 4 · Define las claves</p>
+                <p class="text-slate-200 text-sm">
+                    En cada tabla, la PK es la combinación de ambas columnas.
+                </p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SECCIÓN 4: Resultado: tablas en 4FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
+                4
+            </span>
+            Resultado: tablas en 4FN
+        </h2>
+        <div class="grid gap-4 grid-cols-1">
+
+            <!-- Tabla: empleado_habilidad -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">empleado_habilidad</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">empleado (PK)</th>
+                                <th class="px-4 py-3">habilidad (PK)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Ana</td>
+                                <td class="px-4 py-3 ">SQL</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Ana</td>
+                                <td class="px-4 py-3 ">Python</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Luis</td>
+                                <td class="px-4 py-3 ">Java</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla: empleado_idioma -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">empleado_idioma</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">empleado (PK)</th>
+                                <th class="px-4 py-3">idioma (PK)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Ana</td>
+                                <td class="px-4 py-3 ">Español</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Ana</td>
+                                <td class="px-4 py-3 ">Inglés</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-4 py-3 ">Luis</td>
+                                <td class="px-4 py-3 ">Español</td>
+                            </tr>
+                            <tr class="">
+                                <td class="px-4 py-3 ">Luis</td>
+                                <td class="px-4 py-3 ">Quechua</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            <span class="block mt-4 text-sm">
+                Agregar una habilidad nueva ahora es insertar <strong>una</strong> fila, sin tocar
+                los idiomas.
+            </span>
+        </p>
+    </section>
+
+    <!-- SECCIÓN 5: Errores comunes -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
+            Errores comunes
+        </h2>
+
+        <!-- Tarjetas informativas -->
+        <div class="space-y-3 text-sm text-slate-200">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Separar hechos que sí están relacionados</p>
+                <p>
+                    Si el idioma depende de la habilidad, no son independientes y no hay dependencia
+                    multivaluada que eliminar.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Creer que FNBC ya lo resuelve</p>
+                <p>
+                    La FNBC solo considera dependencias funcionales; esta tabla las cumple todas y
+                    aun así tiene redundancia.
+                </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Buscarla solo en tablas con muchas columnas</p>
+                <p>
+                    El problema aparece con tres columnas, como aquí, siempre que dos de ellas sean
+                    independientes entre sí.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
+        <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
+        <p class="text-slate-100 text-sm leading-relaxed">
+            4FN = <strong>FNBC</strong> + <strong>sin dependencias multivaluadas
+            independientes</strong>. Un hecho multivaluado por tabla.
+        </p>
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="flex items-center justify-between gap-4">
+        <a href="/6fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
+            ← Forma normal de boyce codd
+        </a>
+        <a href="/5fn" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 transition font-semibold text-sm">
+            Quinta Forma Normal →
+        </a>
+    </nav>
+</div>
+{% endblock %}

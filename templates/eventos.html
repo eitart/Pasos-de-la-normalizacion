@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%extends "layout.html" %}
+{% from "cardNom.html" import tarjeta %}
 
-    <title>Menú</title>
-
-    <!-- Tailwind CSS por CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 flex items-center justify-center text-white">
-
-    <main class="w-full max-w-xl mx-4">
-
-        <div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10">
-            
-            {%for evento in eventos%}
-            <h1 class="text-3xl md:text-4xl font-bold text-center mb-10">
-                {{evento.Nombre}} {{evento.Fecha}} {{evento.Lugar}} {{evento.Invitados}} {{evento.Precio}}
-
-            </h1>
-            {%endfor%}
-            
-                
-
-
-    </main>
-
-</body>
-</html>
+{%block main%}
+    {%for evento in eventos%}
+        {%set variable = evento.Nombre %}
+        {%include "card.html" %}
+        {{ tarjeta(evento.Fecha, evento.Lugar) }}
+    {%endfor%}
+{%endblock%}

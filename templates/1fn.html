@@ -1,0 +1,238 @@
+{%extends "layout.html" %}
+
+
+{% block main %}
+<div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
+
+    <!-- ENCABEZADO -->
+    <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
+        Forma normal 1 de 6
+    </p>
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">
+        Primera Forma Normal (1FN)
+    </h1>
+    <p class="text-center text-slate-200 mb-10">
+        La base de todo el proceso de normalización: datos atómicos, sin grupos repetidos y con filas identificables.
+    </p>
+
+    <!-- 1. DEFINICIÓN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
+            ¿Qué dice la 1FN?
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tabla está en <strong class="text-white">Primera Forma Normal</strong> cuando cada celda contiene
+            un único valor <em>atómico</em> (indivisible para el propósito del sistema) y no existen grupos de
+            columnas repetidas que representen lo mismo.
+        </p>
+
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <p class="font-semibold mb-3">Una tabla cumple la 1FN si:</p>
+            <ul class="space-y-2 text-slate-200">
+                <li class="flex gap-3"><span class="text-emerald-400">✔</span> Cada celda guarda <strong>un solo valor</strong> (nada de listas separadas por comas).</li>
+                <li class="flex gap-3"><span class="text-emerald-400">✔</span> No hay <strong>grupos repetidos</strong> de columnas (teléfono1, teléfono2, teléfono3...).</li>
+                <li class="flex gap-3"><span class="text-emerald-400">✔</span> Todos los valores de una columna son del <strong>mismo tipo</strong> y significado.</li>
+                <li class="flex gap-3"><span class="text-emerald-400">✔</span> Cada fila es <strong>única</strong>, identificada por una clave primaria.</li>
+                <li class="flex gap-3"><span class="text-emerald-400">✔</span> El orden de filas y columnas <strong>no importa</strong>.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 2. EJEMPLO QUE VIOLA LA 1FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
+            Ejemplo que NO cumple la 1FN
+        </h2>
+        <p class="text-slate-200 leading-relaxed mb-4">
+            Una tienda guarda a sus clientes así. Hay dos violaciones: la columna
+            <code class="bg-black/30 px-1.5 py-0.5 rounded">telefonos</code> contiene varios valores en una celda,
+            y <code class="bg-black/30 px-1.5 py-0.5 rounded">producto1, producto2</code> son un grupo repetido.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-rose-500/20 text-rose-100">
+                    <tr>
+                        <th class="px-4 py-3">id_cliente</th>
+                        <th class="px-4 py-3">nombre</th>
+                        <th class="px-4 py-3">telefonos</th>
+                        <th class="px-4 py-3">producto1</th>
+                        <th class="px-4 py-3">producto2</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-white/10">
+                    <tr class="bg-white/5">
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Ana Rojas</td>
+                        <td class="px-4 py-3 text-rose-300 font-medium">70011122, 22233344</td>
+                        <td class="px-4 py-3">Chocolate</td>
+                        <td class="px-4 py-3">Café</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3">2</td>
+                        <td class="px-4 py-3">Luis Mamani</td>
+                        <td class="px-4 py-3">71155566</td>
+                        <td class="px-4 py-3">Té</td>
+                        <td class="px-4 py-3 text-slate-400">NULL</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
+            <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema?</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
+                <li>No puedes buscar por un teléfono concreto sin usar búsquedas de texto parcial.</li>
+                <li>Si un cliente compra un tercer producto, tendrías que modificar la estructura de la tabla.</li>
+                <li>Aparecen muchos valores NULL que desperdician espacio.</li>
+                <li>Actualizar o eliminar un solo teléfono implica reescribir el texto completo de la celda.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 3. PASO A PASO -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
+            Cómo llevarla a 1FN, paso a paso
+        </h2>
+
+        <ol class="space-y-4">
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 1 · Identifica los valores múltiples</p>
+                <p class="text-slate-200 text-sm">Busca celdas con comas, guiones o listas, y columnas numeradas (producto1, producto2...). Aquí: <code class="bg-black/30 px-1 rounded">telefonos</code> y <code class="bg-black/30 px-1 rounded">producto1/producto2</code>.</p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 2 · Separa cada atributo repetido en su propia tabla</p>
+                <p class="text-slate-200 text-sm">Un cliente puede tener muchos teléfonos y muchos productos, así que cada uno se convierte en una tabla aparte relacionada con el cliente.</p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 3 · Una fila por cada valor</p>
+                <p class="text-slate-200 text-sm">Cada teléfono y cada producto ocupa su propia fila, sin listas ni columnas numeradas.</p>
+            </li>
+            <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="font-semibold mb-1">Paso 4 · Define claves primarias y foráneas</p>
+                <p class="text-slate-200 text-sm">Cada tabla necesita una clave primaria que identifique sus filas, y una clave foránea (<code class="bg-black/30 px-1 rounded">id_cliente</code>) que la conecte con el cliente.</p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- 4. RESULTADO EN 1FN -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">4</span>
+            Resultado: tablas en 1FN
+        </h2>
+
+        <div class="grid gap-4 md:grid-cols-1">
+
+            <!-- Cliente -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">cliente</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">id_cliente (PK)</th>
+                                <th class="px-4 py-3">nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5"><td class="px-4 py-3">1</td><td class="px-4 py-3">Ana Rojas</td></tr>
+                            <tr><td class="px-4 py-3">2</td><td class="px-4 py-3">Luis Mamani</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">telefono_cliente</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">id_telefono (PK)</th>
+                                <th class="px-4 py-3">id_cliente (FK)</th>
+                                <th class="px-4 py-3">telefono</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5"><td class="px-4 py-3">1</td><td class="px-4 py-3">1</td><td class="px-4 py-3">70011122</td></tr>
+                            <tr><td class="px-4 py-3">2</td><td class="px-4 py-3">1</td><td class="px-4 py-3">22233344</td></tr>
+                            <tr class="bg-white/5"><td class="px-4 py-3">3</td><td class="px-4 py-3">2</td><td class="px-4 py-3">71155566</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Compra -->
+            <div>
+                <p class="font-semibold mb-2 text-emerald-200">compra_cliente</p>
+                <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-emerald-500/20 text-emerald-100">
+                            <tr>
+                                <th class="px-4 py-3">id_compra (PK)</th>
+                                <th class="px-4 py-3">id_cliente (FK)</th>
+                                <th class="px-4 py-3">producto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10">
+                            <tr class="bg-white/5"><td class="px-4 py-3">1</td><td class="px-4 py-3">1</td><td class="px-4 py-3">Chocolate</td></tr>
+                            <tr><td class="px-4 py-3">2</td><td class="px-4 py-3">1</td><td class="px-4 py-3">Café</td></tr>
+                            <tr class="bg-white/5"><td class="px-4 py-3">3</td><td class="px-4 py-3">2</td><td class="px-4 py-3">Té</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-slate-200 text-sm mt-4">
+            Ahora un cliente puede tener 1, 2 o 100 teléfonos o compras sin tocar la estructura, y no hay NULL de relleno.
+        </p>
+    </section>
+
+    <!-- 5. ERRORES COMUNES -->
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
+            Errores comunes
+        </h2>
+        <div class="space-y-3 text-sm text-slate-200">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">«Separar» con más columnas</p>
+                <p>Cambiar <code class="bg-black/30 px-1 rounded">telefonos</code> por <code class="bg-black/30 px-1 rounded">telefono1, telefono2</code> solo disfraza el grupo repetido. Sigue sin cumplir la 1FN.</p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Olvidar la clave primaria</p>
+                <p>Sin una clave que identifique cada fila, pueden existir filas duplicadas y la tabla no cumple la 1FN.</p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <p class="font-semibold text-white mb-1">Confundir «atómico» con «lo más pequeño posible»</p>
+                <p>Atómico depende del sistema. Una dirección como un solo texto puede ser válida si nunca necesitas consultar la calle o la ciudad por separado; si sí lo necesitas, divídela.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. RESUMEN -->
+    <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
+        <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
+        <p class="text-slate-100 text-sm leading-relaxed">
+            1FN = <strong>un valor por celda</strong>, <strong>sin grupos repetidos</strong> y <strong>clave primaria</strong>.
+            Es el requisito previo de las demás formas normales: la 2FN solo tiene sentido si la tabla ya está en 1FN.
+        </p>
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="flex items-center justify-between gap-4">
+        <span class="px-5 py-2.5 rounded-xl bg-white/5 text-slate-500 text-sm cursor-not-allowed">← Anterior</span>
+        <a href="/2fn" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 transition font-semibold text-sm">
+            Segunda Forma Normal →
+        </a>
+    </nav>
+
+</div>
+{% endblock %}

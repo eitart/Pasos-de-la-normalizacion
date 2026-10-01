@@ -12,11 +12,11 @@ def hola():
 
 @main.route("/enter")
 def inter():
-    return render_template("intermedio.html")
+    return render_template("intermedio.html", variable1 = "Este es intermedio.")
 
 @main.route("/final")
 def Final():
-    return render_template("final.html")
+    return render_template("final.html", variable1 = "Este es el final.")
 
 @main.route("/eventos")
 def eventos():
@@ -41,3 +41,25 @@ def eventos():
     }]
     return render_template("eventos.html", eventos = listaEventos)
 
+@main.route("/1fn")
+def primfn():
+    return render_template("1fn.html")
+@main.route("/2fn")
+def secfn():
+    return render_template("2fn.html")
+
+@main.route("/3fn")
+def terfn():
+    return render_template("3fn.html")
+
+@main.route("/4fn")
+def cuarfn():
+    return render_template("4fn.html")
+
+@main.route("/5fn")
+def quintfn():
+    return render_template("5fn.html")
+
+@main.route("/6fn")
+def sixtfn():
+    return render_template("6fn.html")
