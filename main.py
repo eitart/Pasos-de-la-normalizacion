@@ -6,41 +6,6 @@ main = Flask(__name__)
 def inicio():
     return render_template("inicio.html")
 
-@main.route("/hola")
-def hola():
-    return "<h1>Hola mundo</h1>"
-
-@main.route("/enter")
-def inter():
-    return render_template("intermedio.html", variable1 = "Este es intermedio.")
-
-@main.route("/final")
-def Final():
-    return render_template("final.html", variable1 = "Este es el final.")
-
-@main.route("/eventos")
-def eventos():
-    listaEventos = [{
-        "Nombre":"Benjita",
-        "Fecha" : "Hoy",
-        "Lugar" : "Bolivia",
-        "Invitados":"Muchos",
-        "Precio": 20.5
-    },{
-        "Nombre":"Bryan",
-        "Fecha" : "Manana",
-        "Lugar" : "Peru",
-        "Invitados":"Pocos",
-        "Precio": 17.5
-    },{
-        "Nombre":"Gonza",
-        "Fecha" : "Ayer",
-        "Lugar" : "Chile",
-        "Invitados":"Bastante",
-        "Precio": 31.8
-    }]
-    return render_template("eventos.html", eventos = listaEventos)
-
 @main.route("/1fn")
 def primfn():
     return render_template("1fn.html")
