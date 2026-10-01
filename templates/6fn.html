@@ -3,7 +3,6 @@
 {% block main %}
 <div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
 
-    <!-- ENCABEZADO -->
     <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
         Forma normal 6 de 6
     </p>
@@ -13,7 +12,6 @@
         <strong>superclave</strong>.
     </p>
 
-    <!-- SECCIÓN 1: ¿Qué dice la FNBC? -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
@@ -26,7 +24,6 @@
             <strong class="text-white">X es una superclave</strong>.
         </p>
 
-        <!-- Lista de verificación -->
         <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
             <p class="font-semibold mb-3">Una tabla cumple la FNBC si:</p>
             <ul class="space-y-2 text-slate-200">
@@ -44,7 +41,6 @@
             </ul>
         </div>
 
-        <!-- Recuadro: ¿Y la diferencia con la 3FN? -->
         <div class="mt-4 rounded-2xl bg-indigo-500/10 border border-indigo-300/30 p-5">
             <p class="font-semibold mb-2">¿Y la diferencia con la 3FN?</p>
             <div class="text-slate-100 text-sm leading-relaxed">
@@ -55,7 +51,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: Ejemplo que está en 3FN pero NO en FNBC -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
@@ -66,7 +61,6 @@
             puede tener varios docentes, y un estudiante cursa cada materia con un solo docente.
         </p>
 
-        <!-- Tabla: inscripcion -->
         <div>
             <p class="font-semibold mb-2 text-rose-200">inscripcion</p>
             <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
@@ -115,7 +109,6 @@
             </span>
         </p>
 
-        <!-- Recuadro: problemas y anomalías -->
         <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
             <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema?</p>
             <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
@@ -135,14 +128,12 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 3: Cómo llevarla a FNBC, paso a paso -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
             Cómo llevarla a FNBC, paso a paso
         </h2>
 
-        <!-- Pasos numerados -->
         <ol class="space-y-4">
             <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
                 <p class="font-semibold mb-1">Paso 1 · Encuentra todas las claves candidatas</p>
@@ -181,7 +172,6 @@
         </ol>
     </section>
 
-    <!-- SECCIÓN 4: Resultado: tablas en FNBC -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
@@ -191,7 +181,6 @@
         </h2>
         <div class="grid gap-4 grid-cols-1">
 
-            <!-- Tabla: docente_materia -->
             <div>
                 <p class="font-semibold mb-2 text-emerald-200">docente_materia</p>
                 <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
@@ -220,7 +209,7 @@
                 </div>
             </div>
 
-            <!-- Tabla: inscripcion -->
+
             <div>
                 <p class="font-semibold mb-2 text-emerald-200">inscripcion</p>
                 <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
@@ -254,7 +243,6 @@
             </div>
         </div>
 
-        <!-- Recuadro: Ojo: la FNBC tiene un costo -->
         <div class="mt-4 rounded-2xl bg-amber-500/10 border border-amber-300/30 p-5">
             <p class="font-semibold mb-2">Ojo: la FNBC tiene un costo</p>
             <div class="text-slate-100 text-sm leading-relaxed">
@@ -267,14 +255,12 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 5: Errores comunes -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
             Errores comunes
         </h2>
 
-        <!-- Tarjetas informativas -->
         <div class="space-y-3 text-sm text-slate-200">
             <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
                 <p class="font-semibold text-white mb-1">Creer que 3FN y FNBC son lo mismo</p>
@@ -297,7 +283,6 @@
         </div>
     </section>
 
-    <!-- RESUMEN -->
     <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
         <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
         <p class="text-slate-100 text-sm leading-relaxed">
@@ -306,7 +291,6 @@
         </p>
     </section>
 
-    <!-- NAVEGACIÓN -->
     <nav class="flex items-center justify-between gap-4">
         <a href="/3fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
             ← Tercera forma normal

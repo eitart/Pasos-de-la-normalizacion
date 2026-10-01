@@ -3,7 +3,6 @@
 {% block main %}
 <div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
 
-    <!-- ENCABEZADO -->
     <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
         Forma normal 2 de 6
     </p>
@@ -13,7 +12,6 @@
         de ella.
     </p>
 
-    <!-- SECCIÓN 1: ¿Qué dice la 2FN? -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
@@ -26,7 +24,6 @@
             <strong class="text-white">dependencia parcial</strong>.
         </p>
 
-        <!-- Lista de verificación -->
         <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
             <p class="font-semibold mb-3">Una tabla cumple la 2FN si:</p>
             <ul class="space-y-2 text-slate-200">
@@ -58,7 +55,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: Ejemplo que NO cumple la 2FN -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
@@ -73,7 +69,6 @@
             <code class="bg-black/30 px-1.5 py-0.5 rounded">id_producto</code>.
         </p>
 
-        <!-- Tabla: detalle_pedido -->
         <div>
             <p class="font-semibold mb-2 text-rose-200">detalle_pedido</p>
             <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
@@ -114,7 +109,6 @@
             </div>
         </div>
 
-        <!-- Recuadro: problemas y anomalías -->
         <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
             <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema? (anomalías)</p>
             <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
@@ -138,14 +132,12 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 3: Cómo llevarla a 2FN, paso a paso -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
             Cómo llevarla a 2FN, paso a paso
         </h2>
 
-        <!-- Pasos numerados -->
         <ol class="space-y-4">
             <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
                 <p class="font-semibold mb-1">Paso 1 · Identifica la clave primaria</p>
@@ -188,7 +180,6 @@
         </ol>
     </section>
 
-    <!-- SECCIÓN 4: Resultado: tablas en 2FN -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
@@ -198,7 +189,6 @@
         </h2>
         <div class="grid gap-4 grid-cols-1">
 
-            <!-- Tabla: producto -->
             <div>
                 <p class="font-semibold mb-2 text-emerald-200">producto</p>
                 <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
@@ -226,7 +216,6 @@
                 </div>
             </div>
 
-            <!-- Tabla: detalle_pedido -->
             <div>
                 <p class="font-semibold mb-2 text-emerald-200">detalle_pedido</p>
                 <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
@@ -267,14 +256,12 @@
         </p>
     </section>
 
-    <!-- SECCIÓN 5: Errores comunes -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
             Errores comunes
         </h2>
 
-        <!-- Tarjetas informativas -->
         <div class="space-y-3 text-sm text-slate-200">
             <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
                 <p class="font-semibold text-white mb-1">Aplicar la 2FN a tablas con clave simple</p>
@@ -305,7 +292,6 @@
         </div>
     </section>
 
-    <!-- RESUMEN -->
     <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
         <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
         <p class="text-slate-100 text-sm leading-relaxed">
@@ -314,7 +300,6 @@
         </p>
     </section>
 
-    <!-- NAVEGACIÓN -->
     <nav class="flex items-center justify-between gap-4">
         <a href="/1fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
             ← Primera Forma Normal

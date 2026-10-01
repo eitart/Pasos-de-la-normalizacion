@@ -3,7 +3,6 @@
 {% block main %}
 <div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 border border-white/10 my-10">
 
-    <!-- ENCABEZADO -->
     <p class="text-center text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-2">
         Forma normal 4 de 6
     </p>
@@ -12,7 +11,6 @@
         No mezcles dos hechos <strong>independientes</strong> y multivaluados en una misma tabla.
     </p>
 
-    <!-- SECCIÓN 1: ¿Qué dice la 4FN? -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-sm">1</span>
@@ -36,7 +34,6 @@
         </div>
         <div class="mt-4"></div>
 
-        <!-- Lista de verificación -->
         <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
             <p class="font-semibold mb-3">Una tabla cumple la 4FN si:</p>
             <ul class="space-y-2 text-slate-200">
@@ -55,7 +52,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: Ejemplo que NO cumple la 4FN -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500 text-sm">2</span>
@@ -69,7 +65,6 @@
             independientes.
         </p>
 
-        <!-- Tabla: empleado_habilidad_idioma -->
         <div>
             <p class="font-semibold mb-2 text-rose-200">empleado_habilidad_idioma</p>
             <div class="overflow-x-auto rounded-2xl border border-rose-400/30">
@@ -117,7 +112,6 @@
             </div>
         </div>
 
-        <!-- Recuadro: problemas y anomalías -->
         <div class="mt-4 rounded-2xl bg-rose-500/10 border border-rose-400/30 p-5">
             <p class="font-semibold mb-2 text-rose-200">¿Por qué es un problema?</p>
             <ul class="list-disc list-inside space-y-1 text-slate-200 text-sm">
@@ -137,14 +131,12 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 3: Cómo llevarla a 4FN, paso a paso -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-sm">3</span>
             Cómo llevarla a 4FN, paso a paso
         </h2>
 
-        <!-- Pasos numerados -->
         <ol class="space-y-4">
             <li class="rounded-2xl bg-white/5 border border-white/10 p-5">
                 <p class="font-semibold mb-1">Paso 1 · Identifica los atributos multivaluados</p>
@@ -179,7 +171,6 @@
         </ol>
     </section>
 
-    <!-- SECCIÓN 4: Resultado: tablas en 4FN -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm">
@@ -189,7 +180,6 @@
         </h2>
         <div class="grid gap-4 grid-cols-1">
 
-            <!-- Tabla: empleado_habilidad -->
             <div>
                 <p class="font-semibold mb-2 text-emerald-200">empleado_habilidad</p>
                 <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
@@ -218,7 +208,6 @@
                 </div>
             </div>
 
-            <!-- Tabla: empleado_idioma -->
             <div>
                 <p class="font-semibold mb-2 text-emerald-200">empleado_idioma</p>
                 <div class="overflow-x-auto rounded-2xl border border-emerald-400/30">
@@ -259,14 +248,12 @@
         </p>
     </section>
 
-    <!-- SECCIÓN 5: Errores comunes -->
     <section class="mb-10">
         <h2 class="text-xl font-semibold mb-3 flex items-center gap-2">
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-sm">5</span>
             Errores comunes
         </h2>
 
-        <!-- Tarjetas informativas -->
         <div class="space-y-3 text-sm text-slate-200">
             <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
                 <p class="font-semibold text-white mb-1">Separar hechos que sí están relacionados</p>
@@ -292,7 +279,6 @@
         </div>
     </section>
 
-    <!-- RESUMEN -->
     <section class="mb-10 rounded-2xl bg-indigo-500/20 border border-indigo-300/30 p-5">
         <h2 class="text-lg font-semibold mb-2">Resumen rápido</h2>
         <p class="text-slate-100 text-sm leading-relaxed">
@@ -301,7 +287,6 @@
         </p>
     </section>
 
-    <!-- NAVEGACIÓN -->
     <nav class="flex items-center justify-between gap-4">
         <a href="/6fn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition text-sm">
             ← Forma normal de boyce codd
